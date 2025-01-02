@@ -1,5 +1,5 @@
 --+ server-message on
--- Verified for CBRD-25762
+-- Verified for CBRD-25672
 -- error code :
 -- Specifying stored functions as default values for tables and stored procedures/functions is not allowed.
 
