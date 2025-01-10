@@ -29,16 +29,16 @@ CREATE OR REPLACE PROCEDURE default_procedure_with_pseudo (
     p_var_number VARCHAR DEFAULT TO_CHAR(12345, 'S999999')
 ) AS
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('0: ' || CASE isnull(p_date) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);  
-    DBMS_OUTPUT.PUT_LINE('1: ' || CASE WHEN p_null_value IS NULL THEN 'ok' ELSE 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('2: ' || CASE WHEN p_null_string = 'NULL' THEN 'ok' ELSE 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('3: ' || CASE WHEN p_empty_string IS NULL THEN 'ok' ELSE 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('4: ' || CASE isnull(p_user) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('5: ' || CASE WHEN p_fuser = USER() THEN 'ok' ELSE 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('6: ' || CASE isnull(p_cuser) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('7: ' || CASE isnull(p_unix_timestamp) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('8: ' || CASE isnull(p_sys_datetime) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('9: ' || CASE isnull(p_curr_datetime) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 0: ' || CASE isnull(p_date) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);  
+    DBMS_OUTPUT.PUT_LINE(' 1: ' || CASE WHEN p_null_value IS NULL THEN 'ok' ELSE 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 2: ' || CASE WHEN p_null_string = 'NULL' THEN 'ok' ELSE 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 3: ' || CASE WHEN p_empty_string IS NULL THEN 'ok' ELSE 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 4: ' || CASE isnull(p_user) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 5: ' || CASE WHEN p_fuser = USER() THEN 'ok' ELSE 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 6: ' || CASE isnull(p_cuser) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 7: ' || CASE isnull(p_unix_timestamp) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 8: ' || CASE isnull(p_sys_datetime) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 9: ' || CASE isnull(p_curr_datetime) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
     DBMS_OUTPUT.PUT_LINE('10: ' || CASE isnull(p_curr_date) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
     DBMS_OUTPUT.PUT_LINE('11: ' || CASE isnull(p_sys_time) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
     DBMS_OUTPUT.PUT_LINE('12: ' || CASE isnull(p_curr_time) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
