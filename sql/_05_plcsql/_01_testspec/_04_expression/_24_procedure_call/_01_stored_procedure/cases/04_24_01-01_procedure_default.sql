@@ -3,7 +3,7 @@
 -- Verifies : CBRD-25658
 -- default : procedure default 
 -- If CUBRID string and NULL are bundled, NULL is output.
--- When expressed in Oracle style, set the system parameter in ".conf" to 'oracle_style_empty_string=yes' and run the database.
+-- empty string is 'null' value when expressed in Oracle style, set the system parameter in ".conf" to 'oracle_style_empty_string=yes' and run the database.
 
 CREATE OR REPLACE PROCEDURE default_procedure_simple (
     p_id INTEGER DEFAULT 100
@@ -32,7 +32,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE(' 0: ' || CASE isnull(p_date) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);  
     DBMS_OUTPUT.PUT_LINE(' 1: ' || CASE WHEN p_null_value IS NULL THEN 'ok' ELSE 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 2: ' || CASE WHEN p_null_string = 'NULL' THEN 'ok' ELSE 'nok' END);
-    DBMS_OUTPUT.PUT_LINE(' 3: ' || CASE WHEN p_empty_string IS NULL THEN 'ok' ELSE 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 3: ' || CASE WHEN p_empty_string = ''  THEN 'ok' ELSE 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 4: ' || CASE isnull(p_user) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 5: ' || CASE WHEN p_fuser = USER() THEN 'ok' ELSE 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 6: ' || CASE isnull(p_cuser) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
@@ -49,7 +49,7 @@ CREATE OR REPLACE PROCEDURE default_proc_tochar (
     p_formatted_date VARCHAR DEFAULT TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 ) AS
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('Formatted Date: ' || CASE isnull(p_formatted_date) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE('Formatted Date: ' || CASE length(p_formatted_date) WHEN 10 THEN 'ok' ELSE 'nok' END);
 END;
 
 call default_procedure_simple ();

@@ -48,7 +48,7 @@ sp_of    pkg_name    index_of    is_system_generated    arg_name    data_type   
 _db_stored_procedure     null     0     0     p_date     12     1     SYS_DATE     1     null     
 _db_stored_procedure     null     1     0     p_null_value     1     1     null     1     null     
 _db_stored_procedure     null     2     0     p_null_string     4     1     NULL     1     null     
-_db_stored_procedure     null     3     0     p_empty_string     4     1     null     1     null     
+_db_stored_procedure     null     3     0     p_empty_string     4     1          1     null     
 _db_stored_procedure     null     4     0     p_user     4     1     CURRENT_USER     1     null     
 _db_stored_procedure     null     5     0     p_fuser     4     1     USER()     1     null     
 _db_stored_procedure     null     6     0     p_cuser     4     1     CURRENT_USER     1     null     
