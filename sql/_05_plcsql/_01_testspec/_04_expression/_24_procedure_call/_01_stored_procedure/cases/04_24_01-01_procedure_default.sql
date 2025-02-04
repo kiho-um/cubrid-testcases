@@ -21,12 +21,15 @@ CREATE OR REPLACE PROCEDURE default_procedure_with_pseudo (
     p_fuser VARCHAR DEFAULT USER(),
     p_cuser VARCHAR DEFAULT CURRENT_USER,
     p_unix_timestamp INTEGER DEFAULT UNIX_TIMESTAMP(),
+    p_sys_timestamp TIMESTAMP DEFAULT SYS_TIMESTAMP,
+    p_curr_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     p_sys_datetime DATETIME DEFAULT SYS_DATETIME,
     p_curr_datetime DATETIME DEFAULT CURRENT_DATETIME,
     p_curr_date DATE DEFAULT CURRENT_DATE,
     p_sys_time TIME DEFAULT SYS_TIME,
     p_curr_time TIME DEFAULT CURRENT_TIME,
-    p_var_number VARCHAR DEFAULT TO_CHAR(12345, 'S999999')
+    p_var_number VARCHAR DEFAULT TO_CHAR(12345, 'S999999'),
+    p_var_datetime VARCHAR DEFAULT TO_CHAR(sysdatetime, 'YYYY-MM-DD HH24:MI:SS')
 ) AS
 BEGIN
     DBMS_OUTPUT.PUT_LINE(' 0: ' || CASE isnull(p_date) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);  
@@ -36,20 +39,25 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE(' 4: ' || CASE isnull(p_user) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 5: ' || CASE WHEN p_fuser = USER() THEN 'ok' ELSE 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 6: ' || CASE isnull(p_cuser) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE(' 7: ' || CASE isnull(p_unix_timestamp) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE(' 8: ' || CASE isnull(p_sys_datetime) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE(' 9: ' || CASE isnull(p_curr_datetime) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('10: ' || CASE isnull(p_curr_date) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('11: ' || CASE isnull(p_sys_time) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('12: ' || CASE isnull(p_curr_time) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('13: ' || CASE isnull(p_var_number) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 7: ' || CASE WHEN p_unix_timestamp > 0 THEN 'ok' ELSE 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 8: ' || CASE isnull(p_sys_timestamp) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 9: ' || CASE isnull(p_curr_timestamp) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE('10: ' || CASE isnull(p_sys_datetime) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE('11: ' || CASE isnull(p_curr_datetime) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE('12: ' || CASE isnull(p_curr_date) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE('13: ' || CASE isnull(p_sys_time) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE('14: ' || CASE isnull(p_curr_time) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE('15: ' || CASE isnull(p_var_number) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE('16: ' || CASE length(p_var_datetime) WHEN 19 THEN 'ok' WHEN 1 THEN 'nok' END);
 END;
 
 CREATE OR REPLACE PROCEDURE default_proc_tochar (
-    p_formatted_date VARCHAR DEFAULT TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+    p_formatted_date VARCHAR DEFAULT TO_CHAR(SYSDATE, 'YYYY-MM-DD'),
+    p_formatted_sys_date VARCHAR DEFAULT TO_CHAR(SYS_DATE, 'YYYY-MM-DD')
 ) AS
 BEGIN
     DBMS_OUTPUT.PUT_LINE('Formatted Date: ' || CASE length(p_formatted_date) WHEN 10 THEN 'ok' ELSE 'nok' END);
+    DBMS_OUTPUT.PUT_LINE('Formatted SYS_Date: ' || CASE length(p_formatted_sys_date) WHEN 10 THEN 'ok' ELSE 'nok' END);
 END;
 
 call default_procedure_simple ();
