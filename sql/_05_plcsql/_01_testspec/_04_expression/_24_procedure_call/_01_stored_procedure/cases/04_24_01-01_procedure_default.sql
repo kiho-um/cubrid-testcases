@@ -28,7 +28,7 @@ CREATE OR REPLACE PROCEDURE default_procedure_with_pseudo (
     p_curr_date DATE DEFAULT CURRENT_DATE,
     p_sys_time TIME DEFAULT SYS_TIME,
     p_curr_time TIME DEFAULT CURRENT_TIME,
-    p_var_number VARCHAR DEFAULT TO_CHAR(12345, 'S999999'),
+    p_var_number VARCHAR DEFAULT '12345',
     p_var_datetime VARCHAR DEFAULT TO_CHAR(sysdatetime, 'YYYY-MM-DD HH24:MI:SS')
 ) AS
 BEGIN
@@ -47,7 +47,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('12: ' || CASE isnull(p_curr_date) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
     DBMS_OUTPUT.PUT_LINE('13: ' || CASE isnull(p_sys_time) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
     DBMS_OUTPUT.PUT_LINE('14: ' || CASE isnull(p_curr_time) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
-    DBMS_OUTPUT.PUT_LINE('15: ' || CASE isnull(p_var_number) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE('15: ' || CASE WHEN p_var_number = '12345' THEN 'ok' ELSE 'nok' END);
     DBMS_OUTPUT.PUT_LINE('16: ' || CASE length(p_var_datetime) WHEN 19 THEN 'ok' WHEN 1 THEN 'nok' END);
 END;
 
