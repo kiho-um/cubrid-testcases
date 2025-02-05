@@ -36,9 +36,9 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE(' 1: ' || CASE WHEN p_null_value IS NULL THEN 'ok' ELSE 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 2: ' || CASE WHEN p_null_string = 'NULL' THEN 'ok' ELSE 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 3: ' || CASE WHEN p_empty_string = ''  THEN 'ok' ELSE 'nok' END);
-    DBMS_OUTPUT.PUT_LINE(' 4: ' || CASE isnull(p_user) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 4: ' || CASE WHEN p_user = 'DBA' THEN 'ok' ELSE 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 5: ' || CASE WHEN p_fuser = USER() THEN 'ok' ELSE 'nok' END);
-    DBMS_OUTPUT.PUT_LINE(' 6: ' || CASE isnull(p_cuser) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
+    DBMS_OUTPUT.PUT_LINE(' 6: ' || CASE WHEN p_cuser = 'DBA' THEN 'ok' ELSE 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 7: ' || CASE WHEN p_unix_timestamp > 0 THEN 'ok' ELSE 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 8: ' || CASE isnull(p_sys_timestamp) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
     DBMS_OUTPUT.PUT_LINE(' 9: ' || CASE isnull(p_curr_timestamp) WHEN 0 THEN 'ok' WHEN 1 THEN 'nok' END);
@@ -66,7 +66,7 @@ call default_proc_tochar ();
 
 select * from _db_stored_procedure_args where sp_of.sp_name = 'default_procedure_simple';
 select * from _db_stored_procedure_args where sp_of.sp_name = 'default_procedure_with_pseudo' order by index_of;
-select * from _db_stored_procedure_args where sp_of.sp_name = 'default_proc_tochar';
+select * from _db_stored_procedure_args where sp_of.sp_name = 'default_proc_tochar' order by index_of;
 
 drop procedure default_procedure_simple;
 drop procedure default_procedure_with_pseudo;
