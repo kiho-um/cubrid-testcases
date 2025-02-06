@@ -64,7 +64,7 @@ _db_stored_procedure     null     11     0     p_curr_datetime     32     1     
 _db_stored_procedure     null     12     0     p_curr_date     12     1     CURRENT_DATE     1     null     
 _db_stored_procedure     null     13     0     p_sys_time     10     1     SYS_TIME     1     null     
 _db_stored_procedure     null     14     0     p_curr_time     10     1     CURRENT_TIME     1     null     
-_db_stored_procedure     null     15     0     p_var_number     4     1      +12345     1     null     
+_db_stored_procedure     null     15     0     p_var_number     4     1     12345     1     null     
 _db_stored_procedure     null     16     0     p_var_datetime     4     1     TO_CHAR(SYS_DATETIME, 'YYYY-MM-DD HH24:MI:SS')     1     null     
 
 
